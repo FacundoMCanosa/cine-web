@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1 class="mb-4">Cartelera de Cine</h1>
+    
+    <!-- Barra de Búsqueda -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <form action="{{ url_for('gestion_cine') }}" method="get" class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Buscar por Título o Sala..." name="query" value="{{ query or '' }}">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID Función</th>
+                <th>Película</th>
+                <th>Formato y Datos</th>
+                <th>Asientos Disponibles</th>
+                <th>Precio</th>
+                <th>Sala</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for funcion in funciones %}
+            <tr>
+                <td>{{ funcion.id_funcion }}</td>
+                <td>{{ funcion.titulo_pelicula }}</td>
+                <td>{{ funcion.formato_datos }}</td>
+                <td>
+                    <span class="badge {% if funcion.asientos_disponibles == 0 %}bg-danger{% elif funcion.asientos_disponibles < 20 %}bg-warning{% else %}bg-success{% endif %}">
+                        {{ funcion.asientos_disponibles }}
+                    </span>
+                </td>
+                <td>${{ "%.2f"|format(funcion.precio_boleto) }}</td>
+                <td>{{ funcion.sala }}</td>
+                <td>
+                     <span class="badge {% if funcion.estado_funcion == 'Agotada' %}bg-danger{% elif funcion.estado_funcion == 'En Cartelera' %}bg-primary{% else %}bg-secondary{% endif %}">
+                        {{ funcion.estado_funcion }}
+                    </span>
+                </td>
+                <td>
+                    <a href="{{ url_for('vender_entrada', id_funcion=funcion.id_funcion) }}" class="btn btn-primary btn-sm {% if funcion.asientos_disponibles == 0 %}disabled{% endif %}">Vender Entrada</a>
+                    <a href="{{ url_for('editar', id_funcion=funcion.id_funcion) }}" class="btn btn-secondary btn-sm">Editar</a>
+                    <a href="{{ url_for('finalizar', id_funcion=funcion.id_funcion) }}" class="btn btn-warning btn-sm" onclick="return confirm('¿Estás seguro de que quieres marcar esta función como finalizada?');">Finalizar</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="8" class="text-center">No hay funciones en cartelera o que coincidan con la búsqueda.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

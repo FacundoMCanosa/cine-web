@@ -1,0 +1,67 @@
+/* Estilos específicos para la página de inicio (index.html) */
+
+header.pirate-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 3px double #8b4513; /* Doble línea como en un mapa antiguo */
+}
+
+header.pirate-header h1 {
+    font-size: 3em;
+    text-shadow: 1px 1px 2px #c8a464; /* Sombra dorada sutil */
+}
+
+/* Imágenes y videos con efecto de marco antiguo */
+img, iframe {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    border: 8px solid #594545;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Tabla con estilo de manifiesto */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border: 2px solid #8b4513;
+}
+
+table caption {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 10px;
+}
+
+table thead {
+    background-color: #594545;
+    color: #fdfaf3;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #a18046;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: rgba(210, 180, 140, 0.2);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8b4513, rgba(0, 0, 0, 0));
+    margin: 40px 0;
+}
+
+a {
+    color: #b32a2a;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #d9534f;
+}

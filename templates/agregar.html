@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1 class="mb-4">Agregar Nueva Función</h1>
+    <form action="{{ url_for('agregar') }}" method="post">
+        <div class="mb-3">
+            <label for="id_funcion" class="form-label">ID de la Función (ej. F1023-SALA4-2100)</label>
+            <input type="text" class="form-control" id="id_funcion" name="id_funcion" required>
+        </div>
+        <div class="mb-3">
+            <label for="titulo_pelicula" class="form-label">Título de la Película</label>
+            <input type="text" class="form-control" id="titulo_pelicula" name="titulo_pelicula" required>
+        </div>
+        <div class="mb-3">
+            <label for="formato_datos" class="form-label">Formato y Datos</label>
+            <input type="text" class="form-control" id="formato_datos" name="formato_datos" placeholder="IMAX 3D, Subtitulada, Duración: 166 min...">
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="asientos_disponibles" class="form-label">Asientos Disponibles</label>
+                <input type="number" class="form-control" id="asientos_disponibles" name="asientos_disponibles" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="precio_boleto" class="form-label">Precio del Boleto</label>
+                <input type="number" step="0.01" class="form-control" id="precio_boleto" name="precio_boleto" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="sala" class="form-label">Número y Tipo de Sala</label>
+                <input type="text" class="form-control" id="sala" name="sala" placeholder="Sala 4 - IMAX" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="estado_funcion" class="form-label">Estado de la Función</label>
+                <select class="form-select" id="estado_funcion" name="estado_funcion" required>
+                    <option value="Próximamente">Próximamente</option>
+                    <option value="En Cartelera">En Cartelera</option>
+                    <option value="Agotada">Agotada</option>
+                    <option value="Finalizada">Finalizada</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar Función</button>
+       <a href="{{ url_for('gestion_cine') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

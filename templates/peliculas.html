@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestras Películas - Cine Pirata</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos_generales.css') }}">
+    <style>
+        .grid-peliculas {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+            padding: 20px 0;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 4px solid var(--color-madera-clara);
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border-color: var(--color-dorado);
+        }
+
+        /* Efecto de borde interno dorado */
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 1px solid var(--color-dorado);
+            pointer-events: none;
+        }
+
+        .card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--color-dorado);
+        }
+
+        .card-body {
+            padding: 20px;
+            background-color: #fffcf5;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: justify;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-top: 0;
+            color: var(--color-rojo-pirata);
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Estilo especial para Próximamente */
+        .coming-soon {
+            background-color: var(--color-madera-oscura);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .coming-soon .card-body {
+            background-color: transparent;
+            color: #fdf5e6;
+            justify-content: center;
+        }
+        .coming-soon h2 { color: var(--color-dorado); border: none; }
+    </style>
+</head>
+<body>
+
+<nav class="pirate-nav">
+    <a href="{{ url_for('home') }}">Inicio</a>
+    <a href="{{ url_for('peliculas') }}" class="active">Películas</a>
+    <a href="{{ url_for('formulario') }}">Contacto</a>
+    <a href="{{ url_for('gestion_cine') }}">Cartelera</a>
+</nav>
+
+<main>
+    <div style="text-align: center;">
+        <h1>Colección Especial</h1>
+        <p>Disfruta de la saga completa de Piratas del Caribe en nuestra sala.</p>
+    </div>
+
+    <div class="grid-peliculas">
+        <!-- Bucle para generar tarjetas automáticamente desde app.py -->
+        {% for peli in peliculas %}
+        <article class="card">
+            <!-- Asume que las imágenes a.jpg, b.jpg... están en static/imagenes/ -->
+            <img src="{{ url_for('static', filename='imagenes/' + peli.imagen) }}" alt="Póster {{ peli.titulo }}">
+            <div class="card-body">
+                <h3>{{ peli.titulo }}</h3>
+                <p>{{ peli.descripcion }}</p>
+            </div>
+        </article>
+        {% endfor %}
+
+        <!-- Tarjeta Estática de Próximamente -->
+        <article class="card coming-soon">
+            <div class="card-body">
+                <h2>☠️ PRÓXIMAMENTE</h2>
+                <p style="font-size: 1.2rem;">¡Nuevos estrenos de Fantasía y Acción!</p>
+                <p>Nuevas aventuras llegarán pronto a nuestro puerto.</p>
+                <span style="font-size: 3rem;">🎬</span>
+            </div>
+        </article>
+    </div>
+</main>
+
+<footer class="pirate-footer">
+    <p>Cine Barboza y Apaza | EES N°23 Itinerario Informatica.</p>
+</footer>
+
+</body>
+</html>

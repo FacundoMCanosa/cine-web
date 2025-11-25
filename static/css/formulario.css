@@ -1,0 +1,67 @@
+/* Estilos temáticos para la página del formulario */
+
+form {
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    padding: 40px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #c5bba7;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #c8a464;
+    outline: none;
+    box-shadow: 0 0 8px rgba(200, 164, 100, 0.6);
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.3);
+    accent-color: #8b4513;
+}
+
+div > button, div > button[type="reset"] {
+    background-color: #8b4513;
+    color: #fdfaf3;
+    padding: 12px 25px;
+    border: 2px solid #594545;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: inherit;
+    margin: 0 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+}
+
+button[type="reset"] {
+    background-color: #6c757d;
+    border-color: #4a4a4a;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}

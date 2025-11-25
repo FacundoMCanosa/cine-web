@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Cine Barboza y Apaza</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos_generales.css') }}">
+    <style>
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fffcf5;
+            padding: 30px;
+            border: 2px dashed var(--color-madera-clara);
+            box-shadow: 10px 10px 0 rgba(45, 27, 14, 0.1);
+        }
+        
+        .form-group { margin-bottom: 20px; }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--color-madera-oscura);
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--color-madera-clara);
+            background-color: #f4f4f4;
+            font-family: inherit;
+            box-sizing: border-box; /* Para que el padding no rompa el ancho */
+        }
+        
+        input:focus, textarea:focus {
+            outline: 2px solid var(--color-dorado);
+            background-color: #fff;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="pirate-nav">
+    <a href="{{ url_for('home') }}">Inicio</a>
+    <a href="{{ url_for('peliculas') }}">Películas</a>
+    <a href="{{ url_for('formulario') }}" class="active">Contacto</a>
+    <a href="{{ url_for('gestion_cine') }}">Cartelera</a>
+</nav>
+
+<main>
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h1>Contáctanos</h1>
+        <p>¿Tienes alguna duda sobre nuestras funciones o quieres dejarnos un mensaje?</p>
+        <p>Completa el formulario y te responderemos a la brevedad.</p>
+    </div>
+
+    <form action="https://formspree.io/f/mdklbyde" method="POST">
+        <div class="form-group">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre aquí" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="asunto">Asunto:</label>
+            <input type="text" id="asunto" name="asunto" placeholder="Consulta general, Felicitaciones, etc." required>
+        </div>
+
+        <div class="form-group">
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-pirata">Enviar Mensaje 📨</button>
+    </form>
+</main>
+
+<footer class="pirate-footer">
+    <p>Cine Barboza y Apaza | Siempre atentos a nuestra tripulación.</p>
+</footer>
+
+</body>
+</html>

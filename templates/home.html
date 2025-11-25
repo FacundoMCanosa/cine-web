@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cine Barboza y Apaza - Inicio</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estilos_generales.css') }}">
+<style>
+    /* Estilos específicos para el home */
+    .hero-banner {
+        text-align: center;
+        padding: 60px 20px;
+        /* Fondo con imagen oscurecida */
+        background: linear-gradient(rgba(45, 27, 14, 0.7), rgba(45, 27, 14, 0.7)), 
+                    url('{{ url_for("static", filename="imagenes/c.jpg") }}');
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        border-radius: 8px;
+        border: 2px solid var(--color-dorado);
+        margin-bottom: 40px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+    
+    .hero-banner h1 { color: var(--color-dorado); border: none; text-shadow: 2px 2px 4px #000; }
+    .hero-banner p { font-size: 1.3rem; margin-top: 10px; color: #fdf5e6; }
+
+    /* --- ESTILOS DEL VIDEO INCRUSTADO --- */
+    .video-section {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    .video-frame {
+        position: relative;
+        width: 100%;
+        max-width: 800px; /* Ancho máximo del video */
+        margin: 0 auto; /* Centrar */
+        border: 10px solid var(--color-madera-oscura); /* Marco grueso */
+        outline: 2px solid var(--color-dorado); /* Borde dorado externo */
+        box-shadow: 0 15px 30px rgba(0,0,0,0.6); /* Sombra fuerte */
+        background-color: #000;
+        /* Mantener proporción 16:9 */
+        aspect-ratio: 16 / 9;
+    }
+
+    .video-frame iframe {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .info-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+    }
+
+    .info-card {
+        background-color: #fff;
+        padding: 25px;
+        border: 2px solid var(--color-madera-clara);
+        border-radius: 8px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        border-color: var(--color-dorado);
+    }
+
+    .icon { font-size: 3rem; margin-bottom: 15px; display: block; }
+</style>
+</head>
+<body>
+
+<nav class="pirate-nav">
+    <a href="{{ url_for('home') }}" class="active">Inicio</a>
+    <a href="{{ url_for('peliculas') }}">Películas</a>
+    <a href="{{ url_for('formulario') }}">Contacto</a>
+    <a href="{{ url_for('gestion_cine') }}">Cartelera</a>
+</nav>
+
+<main>
+    <!-- Banner de Bienvenida -->
+    <section class="hero-banner">
+        <h1>Bienvenido al Cine Barboza y Apaza</h1>
+        <p>Tu refugio pirata para el cine familiar, fantasía y acción.</p>
+        <p>¡Embárcate en una aventura cinematográfica con nosotros!</p>
+    </section>
+
+    <!-- SECCIÓN DE VIDEO NUEVA -->
+    <section class="video-section">
+        <h2 style="margin-bottom: 20px;">🎬 Tráiler de la Semana</h2>
+        <div class="video-frame">
+            <!-- Video de YouTube: La Venganza de Salazar -->
+            <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/azjsS0wxTA8?si=Y3iH_wGLrhGIB_8K" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
+            picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen></iframe>
+        </div>
+        <p style="margin-top: 15px; font-style: italic;">"Los muertos no cuentan cuentos..."</p>
+    </section>
+
+    <hr style="border: 0; border-top: 1px solid var(--color-madera-clara); margin: 40px 0;">
+
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h2>¿Qué encontrarás aquí?</h2>
+        <p>Somos un pequeño cine temático apasionado por las historias épicas.</p>
+    </div>
+
+    <!-- Tarjetas de Información -->
+    <section class="info-container">
+        <article class="info-card">
+            <span class="icon">☠️</span>
+            <h3>Saga Pirata</h3>
+            <p>Revive las leyendas de Jack Sparrow. Tenemos proyecciones especiales de toda la saga.</p>
+            <a href="{{ url_for('peliculas') }}" class="btn-pirata">Ver Películas</a>
+        </article>
+
+        <article class="info-card">
+            <span class="icon">🎟️</span>
+            <h3>Cartelera y Boletos</h3>
+            <p>Revisa qué funciones están disponibles hoy, horarios y salas.</p>
+            <a href="{{ url_for('gestion_cine') }}" class="btn-pirata">Ver Cartelera</a>
+        </article>
+
+        <article class="info-card">
+            <span class="icon">📜</span>
+            <h3>Buzón del Capitán</h3>
+            <p>¿Tienes sugerencias o quieres reservar una sala? Déjanos un mensaje.</p>
+            <a href="{{ url_for('formulario') }}" class="btn-pirata">Contactar</a>
+        </article>
+    </section>
+</main>
+
+<footer class="pirate-footer">
+    <p>Cine Barboza y Apaza | EES N°23 Itinerario Informatica.</p>
+</footer>
+
+</body>
+</html>
